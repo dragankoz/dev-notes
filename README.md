@@ -29,7 +29,7 @@ idea.system.path=${idea.home}/../IntelliJIdea/system
 #### Network Neighbourhood plugin launching bash
 - Edit ${IntelliJIdeaHome}\config\plugins\NativeNeighbourhood\classes\org\intellij\plugins\nativeNeighbourhood\icons\windows\cmd.bat
 ```
-C:\cygwin64\bin\mintty.exe -e /bin/xhere /bin/bash.exe "%~dp0"
+C:\cygwin64\bin\mintty.exe -e /bin/xhere /bin/bash.exe
 ```
 
 
