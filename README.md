@@ -65,8 +65,9 @@ bcdedit /set hypervisorlaunchtype auto
 ```
 
 
-## Installing Oracle 10g XE
+## Oracle 10g XE
 
+### Installing
 - Install
 - Reboot (if sqlplus is not available on cmd line)
 - Change default http port since 8080 is wildly popular
@@ -88,3 +89,30 @@ PL/SQL procedure successfully completed.
 SQL> quit
 Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
 ```
+
+## Docker for Windows
+### Installing
+- Enable Hyper-V
+- Make sure port 2375 is enabled (Settings → General → "Expose Daemon on tcp://localhost:2375" )
+- Add to System Environment (May need to reboot)
+```
+DOCKER_HOST=tcp://localhost:2375
+```
+
+## Kubernetes
+### Installing
+- See http://www.collegemajorsnews.com/news/Setting-up-Kubernetes-on-Windows10-Laptop-with-Minikube/
+
+(Using cmd.exe - adminstrator)
+```
+> minikube config set profile minikube-dk
+> minikube config set vm-driver hyperv
+> minikube.exe start --kubernetes-version="v1.7.0" --memory=3096 --hyperv-virtual-switch=External1 --v=7 --alsologtos
+```
+
+### Hyper-V + Minikube settings tweaks
+- Disable dynamic memory
+- Turn off time synchronization (Hyper-V integration service) - makes systemd-udevd cpu spike
+- Disable Hyper-V checkpoints
+- Turn off auto-start
+- Assign static MAC (dhcp becomes more predictable?)
