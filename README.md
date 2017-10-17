@@ -22,8 +22,14 @@ idea.system.path=${idea.home}/../IntelliJIdea/system
 ```
 
 - Tools -> Terminal -> Set path
+Cygwin
 ```
 "c:\cygwin64\bin\sh.exe" -c "/bin/xhere /bin/bash"
+```
+
+Linux Subsystem
+```
+"C:\Windows\System32\bash.exe" "--login"
 ```
 
 #### Network Neighbourhood plugin launching bash
