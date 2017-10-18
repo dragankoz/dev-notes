@@ -28,11 +28,6 @@ Cygwin
 "c:\cygwin64\bin\sh.exe" -c "/bin/xhere /bin/bash"
 ```
 
-Linux Subsystem
-```
-"C:\Windows\System32\bash.exe" "--login"
-```
-
 #### Network Neighbourhood plugin launching bash
 - Edit ${IntelliJIdeaHome}\config\plugins\NativeNeighbourhood\classes\org\intellij\plugins\nativeNeighbourhood\icons\windows\cmd.bat
 ```
@@ -51,6 +46,71 @@ Registry should be:
 ```
 [HKEY_CLASSES_ROOT\Directory\Background\shell\cygwin64_bash\command]
 REG_EXPAND_SZ  C:\cygwin64\bin\mintty.exe -e /bin/xhere /bin/bash.exe "%V"
+```
+
+## WSL (Windows Linux Subsystem Tweaks)
+
+- Remove windows path from wsl (prevents BSODS?):
+```
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Lxss]
+"AppendNtPath"=dword:00000000
+```
+
+#### Mintty + WSL (Requires cygwin + wslbridge!)
+- Update wsl shortcut
+
+Download [wslbridge](https://github.com/rprichard/wslbridge/releases) ﻿and copy binaries into **C:\Cygwin64\bin**
+Edit your wsl shortcut to be C:\cygwin64\bin\mintty.exe C:\cygwin64\bin\wslbridge.exe -C ~ -t /bin/bash --login
+```
+C:\cygwin64\bin\mintty.exe C:\cygwin64\bin\wslbridge.exe -C ~ -t /bin/bash --login
+```
+
+- Enable right-click Explorer context with mintty+wsl
+
+Make a wsl.reg file, the commands included in here are: **C:\cygwin64\bin\mintty.exe C:\cygwin64\bin\wslbridge.exe -t /bin/bash --login** 
+
+Opening into dir location doesn't work exactly, but is close enough. Once installed, regedit to suit.
+```
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\wsl_bash\command]
+@=hex(2):43,00,3a,00,5c,00,63,00,79,00,67,00,77,00,69,00,6e,00,36,00,34,00,5c,\
+  00,62,00,69,00,6e,00,5c,00,6d,00,69,00,6e,00,74,00,74,00,79,00,2e,00,65,00,\
+  78,00,65,00,20,00,43,00,3a,00,5c,00,63,00,79,00,67,00,77,00,69,00,6e,00,36,\
+  00,34,00,5c,00,62,00,69,00,6e,00,5c,00,77,00,73,00,6c,00,62,00,72,00,69,00,\
+  64,00,67,00,65,00,2e,00,65,00,78,00,65,00,20,00,2d,00,74,00,20,00,2f,00,62,\
+  00,69,00,6e,00,2f,00,62,00,61,00,73,00,68,00,20,00,2d,00,2d,00,6c,00,6f,00,\
+  67,00,69,00,6e,00,20,00,00,00
+
+[HKEY_CLASSES_ROOT\Directory\shell\wsl_bash\command]
+@=hex(2):43,00,3a,00,5c,00,63,00,79,00,67,00,77,00,69,00,6e,00,36,00,34,00,5c,\
+  00,62,00,69,00,6e,00,5c,00,6d,00,69,00,6e,00,74,00,74,00,79,00,2e,00,65,00,\
+  78,00,65,00,20,00,43,00,3a,00,5c,00,63,00,79,00,67,00,77,00,69,00,6e,00,36,\
+  00,34,00,5c,00,62,00,69,00,6e,00,5c,00,77,00,73,00,6c,00,62,00,72,00,69,00,\
+  64,00,67,00,65,00,2e,00,65,00,78,00,65,00,20,00,2d,00,74,00,20,00,2f,00,62,\
+  00,69,00,6e,00,2f,00,62,00,61,00,73,00,68,00,20,00,2d,00,2d,00,6c,00,6f,00,\
+  67,00,69,00,6e,00,20,00,00,00
+
+[HKEY_CLASSES_ROOT\Drive\Background\Shell\wsl_bash\command]
+@=hex(2):43,00,3a,00,5c,00,63,00,79,00,67,00,77,00,69,00,6e,00,36,00,34,00,5c,\
+  00,62,00,69,00,6e,00,5c,00,6d,00,69,00,6e,00,74,00,74,00,79,00,2e,00,65,00,\
+  78,00,65,00,20,00,43,00,3a,00,5c,00,63,00,79,00,67,00,77,00,69,00,6e,00,36,\
+  00,34,00,5c,00,62,00,69,00,6e,00,5c,00,77,00,73,00,6c,00,62,00,72,00,69,00,\
+  64,00,67,00,65,00,2e,00,65,00,78,00,65,00,20,00,2d,00,74,00,20,00,2f,00,62,\
+  00,69,00,6e,00,2f,00,62,00,61,00,73,00,68,00,20,00,2d,00,2d,00,6c,00,6f,00,\
+  67,00,69,00,6e,00,00,00
+
+[HKEY_CLASSES_ROOT\Drive\shell\wsl_bash\command]
+@=hex(2):43,00,3a,00,5c,00,63,00,79,00,67,00,77,00,69,00,6e,00,36,00,34,00,5c,\
+  00,62,00,69,00,6e,00,5c,00,6d,00,69,00,6e,00,74,00,74,00,79,00,2e,00,65,00,\
+  78,00,65,00,20,00,43,00,3a,00,5c,00,63,00,79,00,67,00,77,00,69,00,6e,00,36,\
+  00,34,00,5c,00,62,00,69,00,6e,00,5c,00,77,00,73,00,6c,00,62,00,72,00,69,00,\
+  64,00,67,00,65,00,2e,00,65,00,78,00,65,00,20,00,2d,00,74,00,20,00,2f,00,62,\
+  00,69,00,6e,00,2f,00,62,00,61,00,73,00,68,00,20,00,2d,00,2d,00,6c,00,6f,00,\
+  67,00,69,00,6e,00,00,00
+  
 ```
 
 ## Hyper-V
