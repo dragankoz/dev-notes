@@ -37,7 +37,7 @@ C:\cygwin64\bin\mintty.exe -e /bin/xhere /bin/bash.exe
 
 ## Cygwin
 
-### Bash propmt here
+### Bash prompt here
 ```
 $ chere -i -t mintty
 ```
