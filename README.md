@@ -62,9 +62,10 @@ Windows Registry Editor Version 5.00
 - Update wsl shortcut
 
 Download [wslbridge](https://github.com/rprichard/wslbridge/releases) ﻿and copy binaries into **C:\Cygwin64\bin**
-Edit your wsl shortcut to be **C:\cygwin64\bin\mintty.exe /bin/wslbridge.exe -t /bin/bash -l**
+Edit your wsl shortcut to be 
+
 ```
-C:\cygwin64\bin\mintty.exe C:\cygwin64\bin\wslbridge.exe -C ~ -t /bin/bash --login
+C:\cygwin64\bin\mintty.exe /bin/wslbridge.exe -C ~ -t /bin/bash -l
 ```
 
 - Enable right-click Explorer context with mintty+wsl
