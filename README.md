@@ -44,7 +44,7 @@ $ chere -i -t mintty
 
 Registry should be:
 ```
-[HKEY_CLASSES_ROOT\Directory\Background\shell\cygwin64_bash\command]
+[HKEY_CLASSES_ROOT\Directory\shell\cygwin64_bash\command]
 REG_EXPAND_SZ  C:\cygwin64\bin\mintty.exe -e /bin/xhere /bin/bash.exe "%V"
 ```
 
