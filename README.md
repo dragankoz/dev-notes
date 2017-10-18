@@ -68,6 +68,12 @@ Edit your wsl shortcut to be
 C:\cygwin64\bin\mintty.exe /bin/wslbridge.exe -C ~ -t /bin/bash -l
 ```
 
+or if that doesn't work, try
+
+```
+C:\cygwin64\bin\mintty.exe /bin/wslbridge.exe -C /home/<wsluser-home> -t /bin/bash -l
+```
+
 - Enable right-click Explorer context with mintty+wsl
 
 Make a wsl.reg file, the commands included in here are: **C:\cygwin64\bin\mintty.exe --dir "%1" /bin/wslbridge.exe -t /bin/bash -l** 
