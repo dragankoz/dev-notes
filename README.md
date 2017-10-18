@@ -71,7 +71,7 @@ C:\cygwin64\bin\mintty.exe C:\cygwin64\bin\wslbridge.exe -C ~ -t /bin/bash --log
 
 Make a wsl.reg file, the commands included in here are: **C:\cygwin64\bin\mintty.exe --dir "%1" /bin/wslbridge.exe -t /bin/bash -l** 
 
-Opening into dir location doesn't work exactly, but is close enough. Once installed, regedit to suit.
+Once installed, regedit to suit.
 ```
 Windows Registry Editor Version 5.00
 
