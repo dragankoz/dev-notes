@@ -34,6 +34,11 @@ Cygwin
 C:\cygwin64\bin\mintty.exe -e /bin/xhere /bin/bash.exe
 ```
 
+- For running .bat/.cmd executions with Network Neighbourhood, add this to the first line:
+```
+cd "%~dp0"
+mvn clean spring-boot:run -Dfrontend.skip=true
+```
 
 ## Cygwin
 
