@@ -180,10 +180,26 @@ Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Produ
 ## Docker for Windows
 ### Installing
 - Enable Hyper-V
-- Make sure port 2375 is enabled (Settings → General → "Expose Daemon on tcp://localhost:2375" )
 - Add to System Environment (May need to reboot)
 ```
+DOCKER_HOST=npipe:////./pipe/docker_engine
+```
+or
+- Make sure port 2375 is enabled (Settings → General → "Expose Daemon on tcp://localhost:2375" )
+```
 DOCKER_HOST=tcp://localhost:2375
+```
+
+### Running Examples
+SonarQube
+```
+docker run -d --name postgres-sonar -e POSTGRES_DB=sonar -e POSTGRES_USER=sonar -e POSTGRES_PASSWORD=sonar postgres:10-alpine
+docker run -d --name sonar --privileged --link=postgres-sonar:db -p 9000:9000 -p 9092:9092 -v e:/sonarqube/plugins:/opt/sonarqube/extensions/plugins -e SONARQUBE_JDBC_USERNAME=sonar -e SONARQUBE_JDBC_PASSWORD=sonar -e SONARQUBE_JDBC_URL=jdbc:postgresql://db/sonar sonarqube:alpine
+```
+
+Shell into container
+```
+docker exec -it sonarqube /bin/sh
 ```
 
 ## Kubernetes
