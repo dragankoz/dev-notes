@@ -202,6 +202,11 @@ Shell into container
 docker exec -it sonarqube /bin/sh
 ```
 
+Create container with mapping
+```
+$ docker run -it --rm --name test  -v /:/mnt alpine /bin/sh
+```
+
 ## Kubernetes
 ### Installing
 - See http://www.collegemajorsnews.com/news/Setting-up-Kubernetes-on-Windows10-Laptop-with-Minikube/
