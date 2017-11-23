@@ -219,3 +219,10 @@ docker exec -it sonarqube /bin/sh
 - Disable Hyper-V checkpoints
 - Turn off auto-start
 - Assign static MAC (dhcp becomes more predictable?)
+
+### Feenix
+set MAVEN_OPTS=-Xmx2048m -noverify -javaagent:%HOMEDRIVE%%HOMEPATH%\feenix\discotek.feenix-agent-2.6.20-beta.jar=%HOMEDRIVE%%HOMEPATH%\feenix\feenix.properties
+
+feenix.properties
+feenix_enabled=true
+feenix_classpath_entry=target\classes
